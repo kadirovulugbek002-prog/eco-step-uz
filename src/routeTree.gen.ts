@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TopshirishRouteImport } from './routes/topshirish'
+import { Route as DokonRouteImport } from './routes/dokon'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TopshirishRoute = TopshirishRouteImport.update({
   id: '/topshirish',
   path: '/topshirish',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DokonRoute = DokonRouteImport.update({
+  id: '/dokon',
+  path: '/dokon',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dokon': typeof DokonRoute
   '/topshirish': typeof TopshirishRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dokon': typeof DokonRoute
   '/topshirish': typeof TopshirishRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dokon': typeof DokonRoute
   '/topshirish': typeof TopshirishRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/topshirish'
+  fullPaths: '/' | '/dokon' | '/topshirish'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/topshirish'
-  id: '__root__' | '/' | '/topshirish'
+  to: '/' | '/dokon' | '/topshirish'
+  id: '__root__' | '/' | '/dokon' | '/topshirish'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DokonRoute: typeof DokonRoute
   TopshirishRoute: typeof TopshirishRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/topshirish'
       fullPath: '/topshirish'
       preLoaderRoute: typeof TopshirishRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dokon': {
+      id: '/dokon'
+      path: '/dokon'
+      fullPath: '/dokon'
+      preLoaderRoute: typeof DokonRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DokonRoute: DokonRoute,
   TopshirishRoute: TopshirishRoute,
 }
 export const routeTree = rootRouteImport
