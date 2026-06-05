@@ -11,6 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { EcoProvider } from "@/lib/eco-context";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -118,8 +122,24 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <EcoProvider>
+        <SidebarProvider>
+          <div className="flex min-h-screen w-full bg-background">
+            <AppSidebar />
+            <SidebarInset className="flex-1">
+              <header className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b border-border/60 bg-background/80 px-4 backdrop-blur-md">
+                <SidebarTrigger />
+                <div className="ml-auto flex items-center gap-2 text-xs text-muted-foreground">
+                  <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-[var(--emerald-glow)]" />
+                  Toshkent · Toza shahar tashabbusi
+                </div>
+              </header>
+              <Outlet />
+            </SidebarInset>
+          </div>
+          <Toaster richColors position="top-right" />
+        </SidebarProvider>
+      </EcoProvider>
     </QueryClientProvider>
   );
 }
