@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as XaritaRouteImport } from './routes/xarita'
 import { Route as TopshirishRouteImport } from './routes/topshirish'
+import { Route as ReytingRouteImport } from './routes/reyting'
 import { Route as DokonRouteImport } from './routes/dokon'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -22,6 +23,11 @@ const XaritaRoute = XaritaRouteImport.update({
 const TopshirishRoute = TopshirishRouteImport.update({
   id: '/topshirish',
   path: '/topshirish',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReytingRoute = ReytingRouteImport.update({
+  id: '/reyting',
+  path: '/reyting',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DokonRoute = DokonRouteImport.update({
@@ -38,12 +44,14 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dokon': typeof DokonRoute
+  '/reyting': typeof ReytingRoute
   '/topshirish': typeof TopshirishRoute
   '/xarita': typeof XaritaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dokon': typeof DokonRoute
+  '/reyting': typeof ReytingRoute
   '/topshirish': typeof TopshirishRoute
   '/xarita': typeof XaritaRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dokon': typeof DokonRoute
+  '/reyting': typeof ReytingRoute
   '/topshirish': typeof TopshirishRoute
   '/xarita': typeof XaritaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dokon' | '/topshirish' | '/xarita'
+  fullPaths: '/' | '/dokon' | '/reyting' | '/topshirish' | '/xarita'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dokon' | '/topshirish' | '/xarita'
-  id: '__root__' | '/' | '/dokon' | '/topshirish' | '/xarita'
+  to: '/' | '/dokon' | '/reyting' | '/topshirish' | '/xarita'
+  id: '__root__' | '/' | '/dokon' | '/reyting' | '/topshirish' | '/xarita'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DokonRoute: typeof DokonRoute
+  ReytingRoute: typeof ReytingRoute
   TopshirishRoute: typeof TopshirishRoute
   XaritaRoute: typeof XaritaRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/topshirish'
       fullPath: '/topshirish'
       preLoaderRoute: typeof TopshirishRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reyting': {
+      id: '/reyting'
+      path: '/reyting'
+      fullPath: '/reyting'
+      preLoaderRoute: typeof ReytingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dokon': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DokonRoute: DokonRoute,
+  ReytingRoute: ReytingRoute,
   TopshirishRoute: TopshirishRoute,
   XaritaRoute: XaritaRoute,
 }
