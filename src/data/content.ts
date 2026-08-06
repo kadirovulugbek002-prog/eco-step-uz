@@ -4,6 +4,9 @@ import type {
   LeaderboardEntry,
   ProcessStep,
   StatItem,
+  ProfileUser,
+  PointsTransaction,
+  SettingsItem,
 } from "../types";
 
 export const COLOR_HEX: Record<string, string> = {
@@ -97,4 +100,58 @@ export const leaderboard: LeaderboardEntry[] = [
   { rank: 1, mahalla: "Chilonzor-9", scoreTons: 842, progressPct: 92 },
   { rank: 2, mahalla: "Yunusobod-11", scoreTons: 761, progressPct: 80 },
   { rank: 3, mahalla: "Sergeli-4", scoreTons: 690, progressPct: 71 },
+];
+
+export const profileUser: ProfileUser = {
+  name: "Ulug'bek Qodirov",
+  phone: "90 123 45 67",
+  mahalla: "Chilonzor-9",
+  memberSince: "Avgust 2026",
+  points: 2450,
+  rankInMahalla: 4,
+};
+
+export const pointsHistory: PointsTransaction[] = [
+  {
+    id: "t1",
+    kind: "topup",
+    label: "Qog'oz topshirildi — Konteyner №14",
+    points: 120,
+    date: "5-avgust",
+  },
+  {
+    id: "t2",
+    kind: "topup",
+    label: "Plastik topshirildi — Konteyner №14",
+    points: 80,
+    date: "3-avgust",
+  },
+  {
+    id: "t3",
+    kind: "redeem",
+    label: "Kupon: jamoat transporti",
+    points: -300,
+    date: "1-avgust",
+  },
+  {
+    id: "t4",
+    kind: "topup",
+    label: "Organik chiqindi topshirildi",
+    points: 60,
+    date: "30-iyul",
+  },
+  {
+    id: "t5",
+    kind: "redeem",
+    label: "Elektr to'lovi qarziga o'tkazildi",
+    points: -500,
+    date: "24-iyul",
+  },
+];
+
+export const settingsItems: SettingsItem[] = [
+  { id: "lang", label: "Til", value: "O'zbekcha", type: "link" },
+  { id: "notif", label: "Bildirishnomalar", type: "toggle" },
+  { id: "mahalla", label: "Mahallani o'zgartirish", type: "link" },
+  { id: "help", label: "Yordam va aloqa", type: "link" },
 ];

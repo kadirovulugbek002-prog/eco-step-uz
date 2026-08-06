@@ -35,3 +35,29 @@ export interface StatItem {
 }
 
 export type AuthStep = "phone" | "code" | "success";
+
+export interface ProfileUser {
+  name: string;
+  phone: string;
+  mahalla: string;
+  memberSince: string;
+  points: number;
+  rankInMahalla: number;
+}
+
+export type TransactionKind = "topup" | "redeem";
+
+export interface PointsTransaction {
+  id: string;
+  kind: TransactionKind;
+  label: string;
+  points: number;
+  date: string;
+}
+
+export interface SettingsItem {
+  id: string;
+  label: string;
+  value?: string;
+  type: "link" | "toggle";
+}

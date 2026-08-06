@@ -17,7 +17,7 @@ export default function SuccessStep() {
       </p>
 
       <Link
-        to="/"
+        to="/profil"
         className="block w-full rounded-[9px] bg-ink py-3.5 text-[15px] font-bold text-white transition-colors hover:bg-primary-deep"
       >
         Davom etish
