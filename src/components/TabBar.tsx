@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 const TABS = [
   { path: "/", label: "Bosh sahifa" },
   { path: "/xarita", label: "Xarita" },
+  { path: "/reyting", label: "Reyting" },
   { path: "/profil", label: "Profil" },
 ];
 export default function TabBar() {

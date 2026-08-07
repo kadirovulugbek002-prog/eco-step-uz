@@ -73,3 +73,13 @@ export interface ContainerLocation {
   overallStatus: OverallStatus;
   bins: BinReading[];
 }
+
+export type RankingMode = "umumiy" | "osish";
+
+export interface MahallaRanking {
+  id: string;
+  name: string;
+  perCapitaKg: number;
+  growthPct: number;
+  isUser?: boolean;
+}

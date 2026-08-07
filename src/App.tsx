@@ -3,6 +3,7 @@ import LandingPage from "./pages/LandingPage";
 import AuthPage from "./pages/AuthPage";
 import ProfilePage from "./pages/ProfilePage";
 import MapPage from "./pages/MapPage";
+import RankingPage from "./pages/RankingPage";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/profil" element={<ProfilePage />} />
         <Route path="/xarita" element={<MapPage />} />
+        <Route path="/reyting" element={<RankingPage />} />
       </Routes>
     </BrowserRouter>
   );

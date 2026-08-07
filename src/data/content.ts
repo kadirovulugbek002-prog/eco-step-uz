@@ -8,6 +8,7 @@ import type {
   PointsTransaction,
   SettingsItem,
   ContainerLocation,
+  MahallaRanking,
 } from "../types";
 
 export const COLOR_HEX: Record<string, string> = {
@@ -230,4 +231,14 @@ export const containers: ContainerLocation[] = [
     overallStatus: overallFrom(containerBins[4]),
     bins: containerBins[4],
   },
+];
+
+export const mahallaRankings: MahallaRanking[] = [
+  { id: "m1", name: "Chilonzor-9", perCapitaKg: 18.4, growthPct: 12, isUser: true },
+  { id: "m2", name: "Yunusobod-11", perCapitaKg: 21.2, growthPct: 4 },
+  { id: "m3", name: "Sergeli-4", perCapitaKg: 16.7, growthPct: 22 },
+  { id: "m4", name: "Mirzo Ulug'bek-3", perCapitaKg: 14.9, growthPct: 8 },
+  { id: "m5", name: "Shayxontohur-7", perCapitaKg: 13.1, growthPct: 31 },
+  { id: "m6", name: "Yakkasaroy-2", perCapitaKg: 11.6, growthPct: -3 },
+  { id: "m7", name: "Bektemir-5", perCapitaKg: 9.8, growthPct: 15 },
 ];
