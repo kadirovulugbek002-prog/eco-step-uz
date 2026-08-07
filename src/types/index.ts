@@ -61,3 +61,15 @@ export interface SettingsItem {
   value?: string;
   type: "link" | "toggle";
 }
+
+export type OverallStatus = "bosh" | "yarim" | "tola";
+
+export interface ContainerLocation {
+  id: string;
+  name: string;
+  x: number;
+  y: number;
+  distanceM: number;
+  overallStatus: OverallStatus;
+  bins: BinReading[];
+}

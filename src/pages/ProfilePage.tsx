@@ -22,7 +22,8 @@ export default function ProfilePage() {
           <SettingsSection />
         </div>
       </div>
-
+      
+      <div className="h-[68px]" />
       <TabBar />
     </div>
   );

@@ -2,14 +2,14 @@ import { Link, useLocation } from "react-router-dom";
 
 const TABS = [
   { path: "/", label: "Bosh sahifa" },
+  { path: "/xarita", label: "Xarita" },
   { path: "/profil", label: "Profil" },
 ];
-
 export default function TabBar() {
   const { pathname } = useLocation();
 
   return (
-    <nav className="sticky bottom-0 z-40 border-t border-line bg-white/95 backdrop-blur-sm">
+    <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-[1120px] justify-center gap-8 px-7 py-3">
         {TABS.map((tab) => {
           const active = pathname === tab.path;

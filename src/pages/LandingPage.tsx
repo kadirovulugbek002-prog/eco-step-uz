@@ -6,6 +6,7 @@ import StatsSection from "../components/StatsSection";
 import RatingSection from "../components/RatingSection";
 import CtaSection from "../components/CtaSection";
 import Footer from "../components/Footer";
+import TabBar from "../components/TabBar";
 
 export default function LandingPage() {
   return (
@@ -18,6 +19,8 @@ export default function LandingPage() {
       <RatingSection />
       <CtaSection />
       <Footer />
+        <div className="h-[68px]" />
+      <TabBar />
     </>
   );
 }

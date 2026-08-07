@@ -7,6 +7,7 @@ import type {
   ProfileUser,
   PointsTransaction,
   SettingsItem,
+  ContainerLocation,
 } from "../types";
 
 export const COLOR_HEX: Record<string, string> = {
@@ -154,4 +155,79 @@ export const settingsItems: SettingsItem[] = [
   { id: "notif", label: "Bildirishnomalar", type: "toggle" },
   { id: "mahalla", label: "Mahallani o'zgartirish", type: "link" },
   { id: "help", label: "Yordam va aloqa", type: "link" },
+];
+
+function makeBins(levels: number[]): BinReading[] {
+  const meta: Array<{ id: string; name: string; colorVar: string }> = [
+    { id: "qogoz", name: "Qog'oz", colorVar: "paper" },
+    { id: "plastik", name: "Plastik", colorVar: "plastic" },
+    { id: "shisha", name: "Shisha", colorVar: "glass" },
+    { id: "rezina", name: "Rezina", colorVar: "rezina" },
+    { id: "organik", name: "Organik", colorVar: "organik" },
+    { id: "metall", name: "Metall", colorVar: "metall" },
+  ];
+  return meta.map((m, i) => ({ ...m, levelPct: levels[i] }));
+}
+
+function overallFrom(bins: BinReading[]): "bosh" | "yarim" | "tola" {
+  const max = Math.max(...bins.map((b) => b.levelPct));
+  if (max >= 80) return "tola";
+  if (max >= 40) return "yarim";
+  return "bosh";
+}
+
+const containerBins: BinReading[][] = [
+  makeBins([88, 34, 61, 15, 95, 47]),
+  makeBins([22, 18, 40, 10, 35, 25]),
+  makeBins([55, 60, 30, 20, 48, 38]),
+  makeBins([12, 8, 15, 5, 20, 10]),
+  makeBins([90, 85, 70, 12, 92, 65]),
+];
+
+export const containers: ContainerLocation[] = [
+  {
+    id: "c14",
+    name: "Konteyner №14",
+    x: 32,
+    y: 28,
+    distanceM: 180,
+    overallStatus: overallFrom(containerBins[0]),
+    bins: containerBins[0],
+  },
+  {
+    id: "c15",
+    name: "Konteyner №15",
+    x: 68,
+    y: 22,
+    distanceM: 340,
+    overallStatus: overallFrom(containerBins[1]),
+    bins: containerBins[1],
+  },
+  {
+    id: "c16",
+    name: "Konteyner №16",
+    x: 50,
+    y: 55,
+    distanceM: 420,
+    overallStatus: overallFrom(containerBins[2]),
+    bins: containerBins[2],
+  },
+  {
+    id: "c17",
+    name: "Konteyner №17",
+    x: 22,
+    y: 72,
+    distanceM: 610,
+    overallStatus: overallFrom(containerBins[3]),
+    bins: containerBins[3],
+  },
+  {
+    id: "c18",
+    name: "Konteyner №18",
+    x: 78,
+    y: 68,
+    distanceM: 730,
+    overallStatus: overallFrom(containerBins[4]),
+    bins: containerBins[4],
+  },
 ];
