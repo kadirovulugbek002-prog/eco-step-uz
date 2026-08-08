@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { profileUser } from "../../data/content";
 
 export default function PointsSummary() {
@@ -17,19 +18,18 @@ export default function PointsSummary() {
       </p>
 
       <div className="mt-5 flex gap-2.5">
-        {/* Kupon do'koni 6-kunda quriladi — hozircha faol emas */}
-        <button
-          disabled
-          className="flex-1 cursor-not-allowed rounded-[9px] bg-accent/40 py-3 text-[14px] font-bold text-ink/50"
+        <Link
+          to="/kuponlar"
+          className="flex-1 rounded-[9px] bg-accent py-3 text-center text-[14px] font-bold text-ink transition-colors hover:bg-[#F0B858]"
         >
           Kuponga almashtirish
-        </button>
-        <button
-          disabled
-          className="flex-1 cursor-not-allowed rounded-[9px] border border-white/10 py-3 text-[14px] font-bold text-white/40"
+        </Link>
+        <Link
+          to="/kuponlar"
+          className="flex-1 rounded-[9px] border border-white/20 py-3 text-center text-[14px] font-bold text-white transition-colors hover:bg-white/10"
         >
           To'lovga o'tkazish
-        </button>
+        </Link>
       </div>
     </div>
   );

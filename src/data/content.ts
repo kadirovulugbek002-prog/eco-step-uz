@@ -9,6 +9,7 @@ import type {
   SettingsItem,
   ContainerLocation,
   MahallaRanking,
+  RewardItem,
 } from "../types";
 
 export const COLOR_HEX: Record<string, string> = {
@@ -241,4 +242,79 @@ export const mahallaRankings: MahallaRanking[] = [
   { id: "m5", name: "Shayxontohur-7", perCapitaKg: 13.1, growthPct: 31 },
   { id: "m6", name: "Yakkasaroy-2", perCapitaKg: 11.6, growthPct: -3 },
   { id: "m7", name: "Bektemir-5", perCapitaKg: 9.8, growthPct: 15 },
+];
+
+export const rewardItems: RewardItem[] = [
+  {
+    id: "r1",
+    name: "Jamoat transporti — 1 chipta",
+    description: "Metro yoki avtobusda bir martalik bepul yo'l",
+    costPoints: 150,
+    category: "transport",
+    emoji: "🚌",
+  },
+  {
+    id: "r2",
+    name: "Mahalliy do'kon — 10% chegirma",
+    description: "Hamkor oziq-ovqat do'konida bir martalik chegirma",
+    costPoints: 200,
+    category: "chegirma",
+    emoji: "🏷️",
+  },
+  {
+    id: "r3",
+    name: "Non yopish sexi — chegirma kuponi",
+    description: "Mahalladagi non yopish sexida 15% chegirma",
+    costPoints: 180,
+    category: "chegirma",
+    emoji: "🍞",
+  },
+  {
+    id: "r4",
+    name: "Jamoat transporti — oylik chipta",
+    description: "1 oylik cheksiz metro/avtobus chiptasi",
+    costPoints: 1800,
+    category: "transport",
+    emoji: "🎫",
+  },
+  {
+    id: "r5",
+    name: "Elektr to'lovi — 20 000 so'm",
+    description: "Ballar to'g'ridan-to'g'ri elektr hisobingizga o'tkaziladi",
+    costPoints: 2000,
+    category: "kommunal",
+    emoji: "💡",
+  },
+  {
+    id: "r6",
+    name: "Gaz to'lovi — 20 000 so'm",
+    description: "Ballar to'g'ridan-to'g'ri gaz hisobingizga o'tkaziladi",
+    costPoints: 2000,
+    category: "kommunal",
+    emoji: "🔥",
+  },
+  {
+    id: "r7",
+    name: "Bolalar uchun — planshet",
+    description: "Choraklik lotereya: eng faol 50 ishtirokchi orasida",
+    costPoints: 5000,
+    category: "katta",
+    emoji: "📱",
+  },
+  {
+    id: "r8",
+    name: "Ayollar uchun — kosmetika to'plami",
+    description: "Choraklik lotereya: eng faol 50 ishtirokchi orasida",
+    costPoints: 4500,
+    category: "katta",
+    emoji: "💄",
+  },
+  {
+    id: "r9",
+    name: "Qariyalar uchun — ko'zoynak",
+    description: "Choraklik lotereya: eng faol 50 ishtirokchi orasida",
+    costPoints: 3500,
+    category: "katta",
+    emoji: "👓",
+  },
 ];

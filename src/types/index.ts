@@ -83,3 +83,14 @@ export interface MahallaRanking {
   growthPct: number;
   isUser?: boolean;
 }
+
+export type RewardCategory = "chegirma" | "transport" | "kommunal" | "katta";
+
+export interface RewardItem {
+  id: string;
+  name: string;
+  description: string;
+  costPoints: number;
+  category: RewardCategory;
+  emoji: string;
+}

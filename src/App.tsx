@@ -4,6 +4,7 @@ import AuthPage from "./pages/AuthPage";
 import ProfilePage from "./pages/ProfilePage";
 import MapPage from "./pages/MapPage";
 import RankingPage from "./pages/RankingPage";
+import CouponsPage from "./pages/CouponsPage";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/profil" element={<ProfilePage />} />
         <Route path="/xarita" element={<MapPage />} />
         <Route path="/reyting" element={<RankingPage />} />
+        <Route path="/kuponlar" element={<CouponsPage />} />
       </Routes>
     </BrowserRouter>
   );
