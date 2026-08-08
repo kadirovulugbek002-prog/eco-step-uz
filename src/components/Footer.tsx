@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
     <footer className="border-t border-line py-10">
@@ -6,7 +8,17 @@ export default function Footer() {
           <span className="h-[22px] w-[22px] rounded-[7px] bg-primary" />
           Toza Mahalla
         </div>
-        <div className="text-[13px] text-ink-soft">© 2026 · Chiqindini qayta ishlash loyihasi</div>
+        <div className="flex items-center gap-4">
+          <Link
+            to="/haydovchi"
+            className="text-[12.5px] font-semibold text-ink-soft hover:text-ink"
+          >
+            Haydovchimisiz? Panelga kirish →
+          </Link>
+          <div className="text-[13px] text-ink-soft">
+            © 2026 · Chiqindini qayta ishlash loyihasi
+          </div>
+        </div>
       </div>
     </footer>
   );
