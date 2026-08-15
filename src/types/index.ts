@@ -7,12 +7,20 @@ export interface BinReading {
   levelPct: number;
 }
 
+export interface WasteMilestone {
+  kg: number;
+  reward: string;
+}
+
 export interface WasteCategory {
   id: string;
   name: string;
   description: string;
   colorVar: string;
-  iconPath: string;
+  iconPath: string; // svg path data
+  pointsPerKg: number;
+  funFact: string;
+  milestones: WasteMilestone[];
 }
 
 export interface LeaderboardEntry {
@@ -34,8 +42,7 @@ export interface StatItem {
   label: string;
 }
 
-export type AuthStep = "phone" | "code" | "success";
-
+export type AuthStep = "phone" | "code" | "details" | "success";
 export interface ProfileUser {
   name: string;
   phone: string;
@@ -94,3 +101,5 @@ export interface RewardItem {
   category: RewardCategory;
   emoji: string;
 }
+
+export type AuthMode = "login" | "register";

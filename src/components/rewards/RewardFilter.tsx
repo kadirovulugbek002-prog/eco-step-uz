@@ -1,22 +1,25 @@
 import type { RewardCategory } from "../../types";
+import { useLanguage } from "../../context/useLanguage";
 
 interface Props {
   active: RewardCategory | "hammasi";
   onChange: (value: RewardCategory | "hammasi") => void;
 }
 
-const OPTIONS: Array<{ id: RewardCategory | "hammasi"; label: string }> = [
-  { id: "hammasi", label: "Barchasi" },
-  { id: "chegirma", label: "Chegirmalar" },
-  { id: "transport", label: "Transport" },
-  { id: "kommunal", label: "Kommunal" },
-  { id: "katta", label: "Katta sovg'alar" },
-];
-
 export default function RewardFilter({ active, onChange }: Props) {
+  const { t } = useLanguage();
+
+  const options: Array<{ id: RewardCategory | "hammasi"; label: string }> = [
+    { id: "hammasi", label: t("coupons_filterAll") },
+    { id: "chegirma", label: t("coupons_filterDiscount") },
+    { id: "transport", label: t("coupons_filterTransport") },
+    { id: "kommunal", label: t("coupons_filterUtility") },
+    { id: "katta", label: t("coupons_filterBig") },
+  ];
+
   return (
     <div className="mb-5 flex gap-2 overflow-x-auto pb-1">
-      {OPTIONS.map((opt) => (
+      {options.map((opt) => (
         <button
           key={opt.id}
           onClick={() => onChange(opt.id)}

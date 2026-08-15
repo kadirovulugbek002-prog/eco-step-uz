@@ -1,10 +1,13 @@
 import { pointsHistory } from "../../data/content";
+import { useLanguage } from "../../context/useLanguage";
 
 export default function PointsHistory() {
+  const { t } = useLanguage();
+
   return (
     <div>
       <h2 className="mb-3.5 text-[15px] font-bold text-ink">
-        So'nggi harakatlar
+        {t("profile_historyTitle")}
       </h2>
       <div className="overflow-hidden rounded-[14px] border border-line bg-white">
         {pointsHistory.map((tx, i) => (

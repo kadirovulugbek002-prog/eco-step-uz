@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { verifyOtp, sendOtp } from "../../lib/auth";
+import { useLanguage } from "../../context/useLanguage";
 
 interface Props {
   phone: string;
@@ -12,7 +14,10 @@ const RESEND_SECONDS = 60;
 export default function CodeStep({ phone, onSubmit, onBack }: Props) {
   const [digits, setDigits] = useState<string[]>(Array(CODE_LENGTH).fill(""));
   const [secondsLeft, setSecondsLeft] = useState(RESEND_SECONDS);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
+  const { t } = useLanguage();
 
   useEffect(() => {
     inputsRef.current[0]?.focus();
@@ -20,8 +25,8 @@ export default function CodeStep({ phone, onSubmit, onBack }: Props) {
 
   useEffect(() => {
     if (secondsLeft <= 0) return;
-    const t = setTimeout(() => setSecondsLeft((s) => s - 1), 1000);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setSecondsLeft((s) => s - 1), 1000);
+    return () => clearTimeout(timer);
   }, [secondsLeft]);
 
   const code = digits.join("");
@@ -43,17 +48,39 @@ export default function CodeStep({ phone, onSubmit, onBack }: Props) {
     }
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (complete) onSubmit(code);
+    if (!complete || loading) return;
+
+    setLoading(true);
+    setError("");
+    try {
+      await verifyOtp(phone, code);
+      onSubmit(code);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Kod noto'g'ri yoki muddati o'tgan.");
+    } finally {
+      setLoading(false);
+    }
   }
 
-  function handleResend() {
+  async function handleResend() {
     if (secondsLeft > 0) return;
-    setSecondsLeft(RESEND_SECONDS);
-    setDigits(Array(CODE_LENGTH).fill(""));
-    inputsRef.current[0]?.focus();
+    setError("");
+    try {
+      await sendOtp(phone);
+      setSecondsLeft(RESEND_SECONDS);
+      setDigits(Array(CODE_LENGTH).fill(""));
+      inputsRef.current[0]?.focus();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Kodni qayta yuborib bo'lmadi.");
+    }
   }
+
+  const formattedPhone =
+    phone.length === 9
+      ? `${phone.slice(0, 2)} ${phone.slice(2, 5)} ${phone.slice(5, 7)} ${phone.slice(7, 9)}`
+      : phone;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -62,20 +89,17 @@ export default function CodeStep({ phone, onSubmit, onBack }: Props) {
         onClick={onBack}
         className="mb-5 text-[13px] font-semibold text-ink-soft hover:text-ink"
       >
-        ← Raqamni o'zgartirish
+        {t("code_back")}
       </button>
 
       <h1 className="heading mb-2 text-[26px] leading-[1.05] sm:text-[30px]">
-        Kodni kiriting
+        {t("code_title")}
       </h1>
       <p className="mb-7 text-[15px] text-ink-soft">
-        +998 {phone.length === 9
-          ? `${phone.slice(0, 2)} ${phone.slice(2, 5)} ${phone.slice(5, 7)} ${phone.slice(7, 9)}`
-          : phone}{" "}
-        raqamiga 6 xonali kod yuborildi.
+        {t("code_subtitlePrefix")} {formattedPhone} {t("code_subtitleSuffix")}
       </p>
 
-      <div className="mb-7 flex justify-between gap-2">
+      <div className="mb-3 flex justify-between gap-2">
         {digits.map((d, i) => (
           <input
             key={i}
@@ -93,12 +117,16 @@ export default function CodeStep({ phone, onSubmit, onBack }: Props) {
         ))}
       </div>
 
+      {error && (
+        <p className="mb-4 text-[13px] font-medium text-alert">{error}</p>
+      )}
+
       <button
         type="submit"
-        disabled={!complete}
+        disabled={!complete || loading}
         className="mb-4 w-full rounded-[9px] bg-ink py-3.5 text-[15px] font-bold text-white transition-colors enabled:hover:bg-primary-deep disabled:cursor-not-allowed disabled:opacity-35"
       >
-        Tasdiqlash
+        {loading ? "Tekshirilmoqda..." : t("code_submit")}
       </button>
 
       <button
@@ -108,8 +136,8 @@ export default function CodeStep({ phone, onSubmit, onBack }: Props) {
         className="w-full text-center text-[13px] font-semibold text-primary enabled:hover:text-primary-deep disabled:text-ink-soft"
       >
         {secondsLeft > 0
-          ? `Kodni qayta yuborish (${secondsLeft}s)`
-          : "Kodni qayta yuborish"}
+          ? `${t("code_resend")} (${secondsLeft}s)`
+          : t("code_resend")}
       </button>
     </form>
   );

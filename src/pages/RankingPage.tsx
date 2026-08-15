@@ -4,10 +4,12 @@ import RankingModeTabs from "../components/ranking/RankingModeTabs";
 import PodiumTop3 from "../components/ranking/PodiumTop3";
 import RankingList from "../components/ranking/RankingList";
 import TabBar from "../components/TabBar";
+import { useLanguage } from "../context/useLanguage";
 import type { RankingMode } from "../types";
 
 export default function RankingPage() {
   const [mode, setMode] = useState<RankingMode>("umumiy");
+  const { t } = useLanguage();
 
   const sorted = useMemo(() => {
     const copy = [...mahallaRankings];
@@ -22,9 +24,9 @@ export default function RankingPage() {
   return (
     <div className="flex min-h-screen flex-col bg-canvas">
       <div className="mx-auto w-full max-w-[560px] flex-1 px-6 py-10">
-        <h1 className="heading mb-1 text-[24px]">Mahallalar reytingi</h1>
+        <h1 className="heading mb-1 text-[24px]">{t("ranking_title")}</h1>
         <p className="mb-6 text-[14px] text-ink-soft">
-          Reyting aholi jon boshiga saralangan chiqindi asosida hisoblanadi.
+          {t("ranking_subtitle")}
         </p>
 
         <RankingModeTabs mode={mode} onChange={setMode} />
@@ -37,9 +39,10 @@ export default function RankingPage() {
 
         <div className="mt-5 rounded-[12px] border border-line bg-white p-4">
           <p className="text-[12.5px] leading-relaxed text-ink-soft">
-            <span className="font-semibold text-ink">G'olib mahalla</span> har
-            oy jamoaviy mukofot oladi — bog'cha maydonchasi yoki ko'cha
-            yoritilishi yaxshilanishi kabi. Reyting har oy yangilanadi.
+            <span className="font-semibold text-ink">
+              {t("ranking_noteTitle")}
+            </span>{" "}
+            {t("ranking_noteBody")}
           </p>
         </div>
       </div>

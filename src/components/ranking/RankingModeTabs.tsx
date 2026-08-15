@@ -1,4 +1,5 @@
 import type { RankingMode } from "../../types";
+import { useLanguage } from "../../context/useLanguage";
 
 interface Props {
   mode: RankingMode;
@@ -6,6 +7,8 @@ interface Props {
 }
 
 export default function RankingModeTabs({ mode, onChange }: Props) {
+  const { t } = useLanguage();
+
   return (
     <div className="mb-5 flex rounded-[10px] border border-line bg-white p-1">
       <button
@@ -16,7 +19,7 @@ export default function RankingModeTabs({ mode, onChange }: Props) {
             : "text-ink-soft hover:text-ink"
         }`}
       >
-        Umumiy reyting
+        {t("ranking_tabOverall")}
       </button>
       <button
         onClick={() => onChange("osish")}
@@ -26,7 +29,7 @@ export default function RankingModeTabs({ mode, onChange }: Props) {
             : "text-ink-soft hover:text-ink"
         }`}
       >
-        Eng ko'p o'sish
+        {t("ranking_tabGrowth")}
       </button>
     </div>
   );

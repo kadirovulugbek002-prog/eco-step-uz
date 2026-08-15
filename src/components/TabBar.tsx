@@ -1,13 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
+import { useLanguage } from "../context/useLanguage";
 
-const TABS = [
-  { path: "/", label: "Bosh sahifa" },
-  { path: "/xarita", label: "Xarita" },
-  { path: "/reyting", label: "Reyting" },
-  { path: "/profil", label: "Profil" },
-];
 export default function TabBar() {
   const { pathname } = useLocation();
+  const { t } = useLanguage();
+
+  const TABS = [
+    { path: "/", label: t("tab_home") },
+    { path: "/xarita", label: t("tab_map") },
+    { path: "/reyting", label: t("tab_ranking") },
+    { path: "/profil", label: t("tab_profile") },
+  ];
 
   return (
     <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 backdrop-blur-sm">

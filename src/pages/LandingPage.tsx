@@ -7,19 +7,30 @@ import RatingSection from "../components/RatingSection";
 import CtaSection from "../components/CtaSection";
 import Footer from "../components/Footer";
 import TabBar from "../components/TabBar";
+import Reveal from "../components/Reveal";
 
 export default function LandingPage() {
   return (
     <>
       <Navbar />
       <Hero />
-      <ProcessSection />
-      <CategoriesSection />
-      <StatsSection />
-      <RatingSection />
-      <CtaSection />
+      <Reveal>
+        <ProcessSection />
+      </Reveal>
+      <Reveal>
+        <CategoriesSection />
+      </Reveal>
+      <Reveal>
+        <StatsSection />
+      </Reveal>
+      <Reveal>
+        <RatingSection />
+      </Reveal>
+      <Reveal>
+        <CtaSection />
+      </Reveal>
       <Footer />
-        <div className="h-[68px]" />
+      <div className="h-[68px]" />
       <TabBar />
     </>
   );

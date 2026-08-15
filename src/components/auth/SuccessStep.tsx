@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
+import { useLanguage } from "../../context/useLanguage";
 
-export default function SuccessStep() {
+interface Props {
+  name?: string;
+}
+
+export default function SuccessStep({ name }: Props) {
+  const { t } = useLanguage();
+
   return (
     <div className="text-center">
       <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-primary/12">
@@ -10,17 +17,17 @@ export default function SuccessStep() {
       </div>
 
       <h1 className="heading mb-2 text-[26px] leading-[1.05] sm:text-[30px]">
-        Tasdiqlandi!
+        {name ? `${t("success_welcomePrefix")} ${name.split(" ")[0]}!` : t("success_verifiedTitle")}
       </h1>
       <p className="mb-7 text-[15px] text-ink-soft">
-        Raqamingiz muvaffaqiyatli tasdiqlandi. Endi profilingizni to'ldirishingiz mumkin.
+        {name ? t("success_registeredDesc") : t("success_verifiedDesc")}
       </p>
 
       <Link
         to="/profil"
         className="block w-full rounded-[9px] bg-ink py-3.5 text-[15px] font-bold text-white transition-colors hover:bg-primary-deep"
       >
-        Davom etish
+        {t("success_continue")}
       </Link>
     </div>
   );

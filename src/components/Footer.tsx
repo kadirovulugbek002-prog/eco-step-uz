@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useLanguage } from "../context/useLanguage";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="border-t border-line py-10">
       <div className="mx-auto flex max-w-[1120px] flex-wrap items-center justify-between gap-4 px-7">
@@ -13,10 +16,10 @@ export default function Footer() {
             to="/haydovchi"
             className="text-[12.5px] font-semibold text-ink-soft hover:text-ink"
           >
-            Haydovchimisiz? Panelga kirish →
+            {t("footer_driverLink")}
           </Link>
           <div className="text-[13px] text-ink-soft">
-            © 2026 · Chiqindini qayta ishlash loyihasi
+            {t("footer_copyright")}
           </div>
         </div>
       </div>

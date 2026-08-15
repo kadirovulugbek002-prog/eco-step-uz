@@ -1,10 +1,18 @@
 import { COLOR_HEX } from "../../data/content";
+import { useLanguage } from "../../context/useLanguage";
 import type { ContainerLocation } from "../../types";
+import type { TranslationKey } from "../../i18n/translations";
 
-const STATUS_LABEL: Record<string, { label: string; classes: string }> = {
-  bosh: { label: "Bo'sh", classes: "text-[#1F6F4A] bg-primary/12" },
-  yarim: { label: "Yarim", classes: "text-accent bg-accent/14" },
-  tola: { label: "To'la", classes: "text-[#C1502E] bg-[#C1502E]/12" },
+const STATUS_KEY: Record<string, TranslationKey> = {
+  bosh: "status_bosh",
+  yarim: "status_yarim",
+  tola: "status_tola",
+};
+
+const STATUS_CLASSES: Record<string, string> = {
+  bosh: "text-[#1F6F4A] bg-primary/12",
+  yarim: "text-accent bg-accent/14",
+  tola: "text-[#C1502E] bg-[#C1502E]/12",
 };
 
 interface Props {
@@ -12,7 +20,7 @@ interface Props {
 }
 
 export default function ContainerDetailCard({ container }: Props) {
-  const overall = STATUS_LABEL[container.overallStatus];
+  const { t } = useLanguage();
 
   return (
     <div className="rounded-[16px] border border-line bg-white p-5">
@@ -20,13 +28,13 @@ export default function ContainerDetailCard({ container }: Props) {
         <div>
           <h3 className="text-[16px] font-bold text-ink">{container.name}</h3>
           <p className="mt-0.5 text-[13px] text-ink-soft">
-            {container.distanceM} m masofada
+            {container.distanceM} {t("map_distanceSuffix")}
           </p>
         </div>
         <span
-          className={`rounded-full px-2.5 py-1 font-mono text-[11px] font-semibold ${overall.classes}`}
+          className={`rounded-full px-2.5 py-1 font-mono text-[11px] font-semibold ${STATUS_CLASSES[container.overallStatus]}`}
         >
-          {overall.label}
+          {t(STATUS_KEY[container.overallStatus])}
         </span>
       </div>
 

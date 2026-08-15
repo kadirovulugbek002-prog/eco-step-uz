@@ -33,6 +33,10 @@
     color: var(--color-ink);
     font-family: var(--font-sans);
   }
+  button:not(:disabled):active,
+  a:active {
+    transform: scale(0.97);
+  }
   @media (prefers-reduced-motion: reduce) {
     * {
       animation-duration: 0.001ms !important;
@@ -40,6 +44,7 @@
     }
   }
 }
+
 
 @layer utilities {
   .heading {

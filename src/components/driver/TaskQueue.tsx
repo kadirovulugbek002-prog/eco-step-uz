@@ -1,9 +1,17 @@
 import type { ContainerLocation, OverallStatus } from "../../types";
+import type { TranslationKey } from "../../i18n/translations";
+import { useLanguage } from "../../context/useLanguage";
 
-const STATUS_LABEL: Record<OverallStatus, { label: string; classes: string }> = {
-  tola: { label: "To'la", classes: "text-[#C1502E] bg-[#C1502E]/12" },
-  yarim: { label: "Yarim", classes: "text-accent bg-accent/14" },
-  bosh: { label: "Bo'sh", classes: "text-[#1F6F4A] bg-primary/12" },
+const STATUS_KEY: Record<OverallStatus, TranslationKey> = {
+  tola: "status_tola",
+  yarim: "status_yarim",
+  bosh: "status_bosh",
+};
+
+const STATUS_CLASSES: Record<OverallStatus, string> = {
+  tola: "text-[#C1502E] bg-[#C1502E]/12",
+  yarim: "text-accent bg-accent/14",
+  bosh: "text-[#1F6F4A] bg-primary/12",
 };
 
 interface Props {
@@ -13,11 +21,12 @@ interface Props {
 }
 
 export default function TaskQueue({ ordered, collectedIds, onToggle }: Props) {
+  const { t } = useLanguage();
+
   return (
     <div className="overflow-hidden rounded-[14px] border border-line bg-white">
       {ordered.map((c, i) => {
         const done = collectedIds.has(c.id);
-        const st = STATUS_LABEL[c.overallStatus];
         return (
           <div
             key={c.id}
@@ -39,9 +48,9 @@ export default function TaskQueue({ ordered, collectedIds, onToggle }: Props) {
                 </p>
                 <div className="mt-0.5 flex items-center gap-1.5">
                   <span
-                    className={`rounded-full px-2 py-0.5 font-mono text-[10px] font-semibold ${st.classes}`}
+                    className={`rounded-full px-2 py-0.5 font-mono text-[10px] font-semibold ${STATUS_CLASSES[c.overallStatus]}`}
                   >
-                    {st.label}
+                    {t(STATUS_KEY[c.overallStatus])}
                   </span>
                   <span className="text-[11.5px] text-ink-soft">
                     {c.distanceM} m
@@ -58,7 +67,7 @@ export default function TaskQueue({ ordered, collectedIds, onToggle }: Props) {
                   : "bg-ink text-white hover:bg-primary-deep"
               }`}
             >
-              {done ? "Bekor qilish" : "Yig'ildi"}
+              {done ? t("driver_undoBtn") : t("driver_collectBtn")}
             </button>
           </div>
         );

@@ -37,6 +37,13 @@ export const wasteCategories: WasteCategory[] = [
     description: "Gazeta, karton, ofis qog'ozlari",
     colorVar: "paper",
     iconPath: "M4 4h16v16H4z M4 9h16M9 4v16",
+    pointsPerKg: 8,
+    funFact: "1 tonna qog'ozni qayta ishlash 17 ta daraxtni kesishdan saqlab qoladi.",
+    milestones: [
+      { kg: 5, reward: "1 marta jamoat transporti chiptasi" },
+      { kg: 20, reward: "Mahalliy do'konda 10% chegirma" },
+      { kg: 100, reward: "Elektr to'lovingizga 20 000 so'm" },
+    ],
   },
   {
     id: "plastik",
@@ -44,6 +51,13 @@ export const wasteCategories: WasteCategory[] = [
     description: "Butilka, paket, idishlar",
     colorVar: "plastic",
     iconPath: "M8 3h8l1 5H7l1-5Z M7 8h10l-1 13H8L7 8Z",
+    pointsPerKg: 12,
+    funFact: "Bitta plastik butilka tabiatda parchalanishi uchun 450 yilgacha vaqt ketishi mumkin.",
+    milestones: [
+      { kg: 4, reward: "1 marta jamoat transporti chiptasi" },
+      { kg: 15, reward: "Mahalliy do'konda 10% chegirma" },
+      { kg: 70, reward: "Elektr to'lovingizga 20 000 so'm" },
+    ],
   },
   {
     id: "shisha",
@@ -51,6 +65,13 @@ export const wasteCategories: WasteCategory[] = [
     description: "Butilka va shisha idishlar",
     colorVar: "glass",
     iconPath: "M9 2h6v6l3 12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2l3-12V2Z",
+    pointsPerKg: 6,
+    funFact: "Shisha 100% qayta ishlanadi va sifatini yo'qotmaydi — cheksiz marta ishlatilishi mumkin.",
+    milestones: [
+      { kg: 8, reward: "1 marta jamoat transporti chiptasi" },
+      { kg: 30, reward: "Mahalliy do'konda 10% chegirma" },
+      { kg: 130, reward: "Gaz to'lovingizga 20 000 so'm" },
+    ],
   },
   {
     id: "rezina",
@@ -58,6 +79,13 @@ export const wasteCategories: WasteCategory[] = [
     description: "Shina va rezina mahsulotlar",
     colorVar: "rezina",
     iconPath: "M12 12m-8 0a8 8 0 1 0 16 0a8 8 0 1 0-16 0 M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0-6 0",
+    pointsPerKg: 15,
+    funFact: "Eskirgan shinalar yondirilganda zaharli tutun chiqaradi — qayta ishlash bu muammoni oldini oladi.",
+    milestones: [
+      { kg: 3, reward: "1 marta jamoat transporti chiptasi" },
+      { kg: 12, reward: "Mahalliy do'konda 10% chegirma" },
+      { kg: 60, reward: "Gaz to'lovingizga 20 000 so'm" },
+    ],
   },
   {
     id: "organik",
@@ -65,6 +93,13 @@ export const wasteCategories: WasteCategory[] = [
     description: "Sabzavot po'stlog'i va shu kabilar",
     colorVar: "organik",
     iconPath: "M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9Z",
+    pointsPerKg: 4,
+    funFact: "Organik chiqindi to'g'ri qayta ishlansa, bog' va dalalar uchun tabiiy o'g'itga aylanadi.",
+    milestones: [
+      { kg: 10, reward: "1 marta jamoat transporti chiptasi" },
+      { kg: 40, reward: "Mahalliy do'konda 10% chegirma" },
+      { kg: 180, reward: "Elektr to'lovingizga 20 000 so'm" },
+    ],
   },
   {
     id: "metall",
@@ -72,6 +107,13 @@ export const wasteCategories: WasteCategory[] = [
     description: "Bankalar va konserva idishlari",
     colorVar: "metall",
     iconPath: "M4 7l8-4 8 4v10l-8 4-8-4V7Z M4 7l8 4 8-4M12 11v10",
+    pointsPerKg: 25,
+    funFact: "Alyuminiy bankani qayta ishlash — uni noldan ishlab chiqarishga qaraganda 95% kam energiya talab qiladi.",
+    milestones: [
+      { kg: 2, reward: "1 marta jamoat transporti chiptasi" },
+      { kg: 8, reward: "Mahalliy do'konda 10% chegirma" },
+      { kg: 35, reward: "Gaz to'lovingizga 20 000 so'm" },
+    ],
   },
 ];
 

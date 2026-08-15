@@ -1,4 +1,5 @@
 import type { MahallaRanking, RankingMode } from "../../types";
+import { useLanguage } from "../../context/useLanguage";
 
 interface Props {
   entries: MahallaRanking[];
@@ -6,6 +7,7 @@ interface Props {
 }
 
 export default function RankingList({ entries, mode }: Props) {
+  const { t } = useLanguage();
   const rest = entries.slice(3);
   const maxValue = Math.max(
     ...entries.map((e) => (mode === "umumiy" ? e.perCapitaKg : e.growthPct))
@@ -32,7 +34,7 @@ export default function RankingList({ entries, mode }: Props) {
                   {m.name}
                   {m.isUser && (
                     <span className="ml-1.5 text-[11px] font-normal text-primary">
-                      (siz)
+                      {t("ranking_you")}
                     </span>
                   )}
                 </span>

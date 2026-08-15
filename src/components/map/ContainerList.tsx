@@ -1,10 +1,18 @@
 import { containers } from "../../data/content";
+import { useLanguage } from "../../context/useLanguage";
 import type { OverallStatus } from "../../types";
+import type { TranslationKey } from "../../i18n/translations";
 
-const STATUS_LABEL: Record<OverallStatus, { label: string; classes: string }> = {
-  bosh: { label: "Bo'sh", classes: "text-[#1F6F4A] bg-primary/12" },
-  yarim: { label: "Yarim", classes: "text-accent bg-accent/14" },
-  tola: { label: "To'la", classes: "text-[#C1502E] bg-[#C1502E]/12" },
+const STATUS_KEY: Record<OverallStatus, TranslationKey> = {
+  bosh: "status_bosh",
+  yarim: "status_yarim",
+  tola: "status_tola",
+};
+
+const STATUS_CLASSES: Record<OverallStatus, string> = {
+  bosh: "text-[#1F6F4A] bg-primary/12",
+  yarim: "text-accent bg-accent/14",
+  tola: "text-[#C1502E] bg-[#C1502E]/12",
 };
 
 interface Props {
@@ -13,12 +21,12 @@ interface Props {
 }
 
 export default function ContainerList({ selectedId, onSelect }: Props) {
+  const { t } = useLanguage();
   const sorted = [...containers].sort((a, b) => a.distanceM - b.distanceM);
 
   return (
     <div className="overflow-hidden rounded-[14px] border border-line bg-white">
       {sorted.map((c, i) => {
-        const st = STATUS_LABEL[c.overallStatus];
         const active = c.id === selectedId;
         return (
           <button
@@ -31,13 +39,13 @@ export default function ContainerList({ selectedId, onSelect }: Props) {
             <div>
               <p className="text-[13.5px] font-semibold text-ink">{c.name}</p>
               <p className="mt-0.5 text-[12px] text-ink-soft">
-                {c.distanceM} m masofada
+                {c.distanceM} {t("map_distanceSuffix")}
               </p>
             </div>
             <span
-              className={`rounded-full px-2.5 py-1 font-mono text-[11px] font-semibold ${st.classes}`}
+              className={`rounded-full px-2.5 py-1 font-mono text-[11px] font-semibold ${STATUS_CLASSES[c.overallStatus]}`}
             >
-              {st.label}
+              {t(STATUS_KEY[c.overallStatus])}
             </span>
           </button>
         );
