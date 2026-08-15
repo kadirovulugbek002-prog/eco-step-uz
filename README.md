@@ -1,25 +1,26 @@
 # 🌱 EcoStep Uzbekistan
 
-> Ekologik odatlarni rivojlantirish, chiqindilarni qayta ishlashga rag‘batlantirish va foydalanuvchilarning ekologik faolligini kuzatishga yordam beruvchi web platforma.
+> Chiqindilarni qayta ishlashni rag‘batlantiruvchi va ekologik faollikni kuzatishga yordam beruvchi zamonaviy frontend web-ilova.
 
-## ✨ Loyiha haqida
+## 📌 Loyiha holati
 
-**EcoStep Uzbekistan** — foydalanuvchilarga chiqindi topshirish, ekologik faoliyatini kuzatish va Eco-Ball orqali rag‘batlantirish imkonini beruvchi zamonaviy frontend loyiha.
+**Frontend portfolio project / prototype.** Hozirgi versiyada ekologik statistika, Eco-Ball, topshiriqlar, reyting, xarita va do‘kon funksiyalari lokal React state orqali ishlaydi. Real backend/API integratsiyasi keyingi bosqich uchun rejalashtirilgan.
 
-Loyiha foydalanuvchining ekologik ta’sirini dashboard orqali ko‘rsatadi: qayta ishlangan chiqindi miqdori, to‘plangan Eco-Ballar, kamaytirilgan CO₂ hamda kunlik va haftalik maqsadlar.
-
-## 🚀 Asosiy imkoniyatlar
+## ✨ Asosiy imkoniyatlar
 
 - 📊 Ekologik dashboard va statistikalar
-- ♻️ Chiqindi topshirish jarayoni
+- ♻️ Chiqindi topshirishning 4 bosqichli jarayoni
 - 🪙 Eco-Ball tizimi
-- 📈 Kunlik va haftalik maqsadlarni kuzatish
-- 🏆 Reyting sahifasi
-- 🗺️ Xarita sahifasi
-- 📋 Foydalanuvchi faoliyati tarixini ko‘rish
-- 📱 Responsive va zamonaviy UI
+- 📈 Kunlik va haftalik maqsadlar
+- 🏆 Reyting va ekologik tahlil
+- 🗺️ Chiqindi yig‘ish punktlari xaritasi
+- 🛍️ Eco-Do‘kon va vaucherlar
+- 🔔 Toast bildirishnomalari
+- 📱 Responsive UI
 - 🧩 Qayta foydalaniladigan React komponentlari
 - 🛣️ File-based routing
+- ❌ Noto‘g‘ri route uchun 404 sahifa
+- ⚠️ Global error boundary va server-side error handling
 
 ## 🛠️ Texnologiyalar
 
@@ -27,7 +28,7 @@ Loyiha foydalanuvchining ekologik ta’sirini dashboard orqali ko‘rsatadi: qay
 - **TypeScript**
 - **TanStack Start**
 - **TanStack Router**
-- **React Query**
+- **TanStack Query**
 - **Tailwind CSS 4**
 - **Vite**
 - **Lucide React**
@@ -40,23 +41,28 @@ Loyiha foydalanuvchining ekologik ta’sirini dashboard orqali ko‘rsatadi: qay
 
 ```text
 src/
-├── components/     # Qayta ishlatiladigan UI komponentlari
-├── hooks/          # Custom React hooks
-├── lib/            # Context, API va yordamchi funksiyalar
-├── routes/         # Sahifalar va routing
-├── routeTree.gen.ts
-├── router.tsx
-├── server.ts
-└── styles.css
+├── components/        # Qayta ishlatiladigan UI komponentlari
+│   ├── ui/            # UI primitives
+│   └── app-sidebar.tsx
+├── hooks/             # Custom React hooks
+├── lib/               # Context, server config va yordamchi funksiyalar
+├── routes/            # File-based route'lar
+├── routeTree.gen.ts   # TanStack Router tomonidan generatsiya qilinadi
+├── router.tsx         # Router konfiguratsiyasi
+├── server.ts          # Server entry
+├── start.ts           # TanStack Start konfiguratsiyasi
+└── styles.css         # Design system va global CSS
 ```
 
 ## 🛣️ Asosiy sahifalar
 
-- `/` — Dashboard
-- `/topshirish` — Chiqindi topshirish
-- `/reyting` — Reyting
-- `/xarita` — Xarita
-- `/dokon` — Do‘kon
+| Route | Vazifasi |
+|---|---|
+| `/` | Dashboard |
+| `/topshirish` | Chiqindi topshirish |
+| `/reyting` | Reyting va tahlil |
+| `/xarita` | Eko-Xarita |
+| `/dokon` | Eco-Do‘kon |
 
 ## ⚙️ Loyihani ishga tushirish
 
@@ -79,22 +85,29 @@ npm install
 npm run dev
 ```
 
-### 4. Production build
+### 4. Lint
+
+```bash
+npm run lint
+```
+
+### 5. Production build
 
 ```bash
 npm run build
 ```
 
+## 🔐 Xavfsizlik
+
+- `.env`, `.env.local` va boshqa local environment fayllari Git orqali kuzatilmaydi.
+- Server-only konfiguratsiya `*.server.ts` fayllarida saqlanadi.
+- Maxfiy API key yoki tokenlarni repository'ga commit qilmaslik kerak.
+
 ## 👨‍💻 Muallif
 
 **Ulug‘bek Jo‘raboyev** — Junior Frontend Developer
 
-- React
-- TypeScript
-- JavaScript
-- Tailwind CSS
-- REST API
-- Git & GitHub
+**Stack:** React · TypeScript · JavaScript · Tailwind CSS · Git · GitHub
 
 📍 Tashkent, Uzbekistan
 
@@ -104,4 +117,4 @@ npm run build
 
 ---
 
-⭐ Agar loyiha sizga qiziq bo‘lsa, repository'ga Star qoldirishingiz mumkin.
+⭐ Portfolio uchun ishlab chiqilgan frontend loyiha.
