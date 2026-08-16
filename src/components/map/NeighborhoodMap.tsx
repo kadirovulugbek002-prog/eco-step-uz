@@ -1,5 +1,4 @@
-import { containers } from "../../data/content";
-import type { OverallStatus } from "../../types";
+import type { ContainerLocation, OverallStatus } from "../../types";
 
 const STATUS_COLOR: Record<OverallStatus, string> = {
   bosh: "#1F6F4A",
@@ -8,15 +7,14 @@ const STATUS_COLOR: Record<OverallStatus, string> = {
 };
 
 interface Props {
+  containers: ContainerLocation[];
   selectedId: string;
   onSelect: (id: string) => void;
 }
 
-export default function NeighborhoodMap({ selectedId, onSelect }: Props) {
+export default function NeighborhoodMap({ containers, selectedId, onSelect }: Props) {
   return (
     <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[18px] border border-line bg-[#EAE8DE]">
-      {/* Schematic street grid — a stylised placeholder until a real map
-          provider (e.g. Yandex/Google Maps) is wired up with an API key. */}
       <svg
         viewBox="0 0 100 75"
         preserveAspectRatio="none"
@@ -26,9 +24,6 @@ export default function NeighborhoodMap({ selectedId, onSelect }: Props) {
         <line x1="0" y1="45" x2="100" y2="50" stroke="#D8D3C3" strokeWidth="1.4" />
         <line x1="25" y1="0" x2="20" y2="75" stroke="#D8D3C3" strokeWidth="1.4" />
         <line x1="65" y1="0" x2="70" y2="75" stroke="#D8D3C3" strokeWidth="1.4" />
-        <rect x="30" y="30" width="16" height="12" rx="1.5" fill="#DEDBCE" />
-        <rect x="52" y="14" width="14" height="10" rx="1.5" fill="#DEDBCE" />
-        <rect x="10" y="52" width="14" height="14" rx="1.5" fill="#DEDBCE" />
       </svg>
 
       {containers.map((c) => {

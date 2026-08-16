@@ -1,50 +1,65 @@
-import { useMemo, useState } from "react";
-import { mahallaRankings } from "../data/content";
-import RankingModeTabs from "../components/ranking/RankingModeTabs";
-import PodiumTop3 from "../components/ranking/PodiumTop3";
-import RankingList from "../components/ranking/RankingList";
+import { useEffect, useState } from "react";
 import TabBar from "../components/TabBar";
-import { useLanguage } from "../context/useLanguage";
-import type { RankingMode } from "../types";
+import { fetchMahallaList } from "../lib/mahallas";
+import type { MahallaListItem } from "../lib/mahallas";
 
 export default function RankingPage() {
-  const [mode, setMode] = useState<RankingMode>("umumiy");
-  const { t } = useLanguage();
+  const [mahallas, setMahallas] = useState<MahallaListItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const sorted = useMemo(() => {
-    const copy = [...mahallaRankings];
-    copy.sort((a, b) =>
-      mode === "umumiy"
-        ? b.perCapitaKg - a.perCapitaKg
-        : b.growthPct - a.growthPct
-    );
-    return copy;
-  }, [mode]);
+  useEffect(() => {
+    fetchMahallaList()
+      .then(setMahallas)
+      .catch((err: Error) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col bg-canvas">
       <div className="mx-auto w-full max-w-[560px] flex-1 px-6 py-10">
-        <h1 className="heading mb-1 text-[24px]">{t("ranking_title")}</h1>
+        <h1 className="heading mb-1 text-[24px]">Mahallalar</h1>
         <p className="mb-6 text-[14px] text-ink-soft">
-          {t("ranking_subtitle")}
+          Tizimga ulangan mahallalar ro'yxati.
         </p>
 
-        <RankingModeTabs mode={mode} onChange={setMode} />
-
-        <PodiumTop3 entries={sorted} mode={mode} />
-
-        <div className="mt-3">
-          <RankingList entries={sorted} mode={mode} />
-        </div>
-
-        <div className="mt-5 rounded-[12px] border border-line bg-white p-4">
+        <div className="mb-5 rounded-[12px] border border-line bg-white p-4">
           <p className="text-[12.5px] leading-relaxed text-ink-soft">
-            <span className="font-semibold text-ink">
-              {t("ranking_noteTitle")}
-            </span>{" "}
-            {t("ranking_noteBody")}
+            <span className="font-semibold text-ink">Reyting hali mavjud emas.</span>{" "}
+            Fuqarolar chiqindi topshira boshlagach, mahallalar aholi jon
+            boshiga saralangan chiqindi asosida solishtiriladi.
           </p>
         </div>
+
+        {loading && (
+          <p className="text-[13.5px] text-ink-soft">Yuklanmoqda...</p>
+        )}
+
+        {error && (
+          <p className="rounded-[10px] bg-alert/10 p-3 text-[13px] font-medium text-alert">
+            {error}
+          </p>
+        )}
+
+        {!loading && !error && (
+          <div className="overflow-hidden rounded-[14px] border border-line bg-white">
+            {mahallas.map((m, i) => (
+              <div
+                key={m.id}
+                className={`flex items-center justify-between px-4 py-3.5 ${
+                  i !== mahallas.length - 1 ? "border-b border-line" : ""
+                }`}
+              >
+                <span className="text-[13.5px] font-semibold text-ink">
+                  {m.name}
+                </span>
+                <span className="font-mono text-[12px] text-ink-soft">
+                  {m.residentCount.toLocaleString("uz-UZ")} kishi
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="h-[68px]" />

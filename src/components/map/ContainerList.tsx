@@ -1,7 +1,6 @@
-import { containers } from "../../data/content";
-import { useLanguage } from "../../context/useLanguage";
-import type { OverallStatus } from "../../types";
+import type { ContainerLocation, OverallStatus } from "../../types";
 import type { TranslationKey } from "../../i18n/translations";
+import { useLanguage } from "../../context/useLanguage";
 
 const STATUS_KEY: Record<OverallStatus, TranslationKey> = {
   bosh: "status_bosh",
@@ -16,11 +15,12 @@ const STATUS_CLASSES: Record<OverallStatus, string> = {
 };
 
 interface Props {
+  containers: ContainerLocation[];
   selectedId: string;
   onSelect: (id: string) => void;
 }
 
-export default function ContainerList({ selectedId, onSelect }: Props) {
+export default function ContainerList({ containers, selectedId, onSelect }: Props) {
   const { t } = useLanguage();
   const sorted = [...containers].sort((a, b) => a.distanceM - b.distanceM);
 
